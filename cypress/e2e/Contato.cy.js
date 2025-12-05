@@ -5,13 +5,9 @@ describe('template spec', () => {
     cy.start()
   })
 
-  it.only('Caso Perfeito', () => {
+  it('Caso Perfeito', () => {
 
     //cy.visit('https://www.sertenge.com.br/selettosalvadornorte/')
-cy.get('#contato')
-  .contains('span.success', 'Sua mensagem foi enviada.')
-  .should('be.visible')
-
 
 
     cy.get('#ctt-name').type('Teste Teste')
@@ -29,7 +25,10 @@ cy.get('#contato')
 
 
   })
-  it('Campo Obrigatorio', () => {
+
+   context('Campos Obrigatórios', () => {  
+
+  it('Todos os Campos Obrigatorios', () => {
     cy.contains('button', 'Enviar').click()
 
 cy.get('#ctt-mail')
@@ -56,6 +55,61 @@ cy.get('#ctt-fone')
   .should('be.visible')
   .and('contain', 'Informe o seu telefone.')
 
+
+
   })
+
+    it('Nome Obrigatorio', () => {
+ 
+
+    cy.get('#ctt-mail').type('Teste@hotmail.com')
+    cy.get('#ctt-fone').type('71981489637')
+
+    cy.contains('button', 'Enviar').click()
+
+    cy.get('#ctt-name')
+    //.parent()
+    .siblings('.message')
+    .should('be.visible')
+    .and('contain', 'Informe o seu nome e sobrenome.')
+
+    cy.contains('button', 'Enviar').click()
+
+
+  })
+
+
+    it('E-mail Obrigatorio', () => {
+
+    cy.get('#ctt-name').type('Teste Teste')
+    cy.get('#ctt-fone').type('71981489637')
+
+    cy.contains('button', 'Enviar').click()
+
+
+cy.get('#ctt-mail')
+  .next('.message')
+  .should('be.visible')
+  .and('contain', 'Informe o seu e-mail.')
+
+  })
+
+      it('Telefone Obrigatorio', () => {
+        
+    cy.get('#ctt-mail').type('Teste@hotmail.com')
+    cy.get('#ctt-name').type('Teste Teste')
+
+    cy.contains('button', 'Enviar').click()
+
+
+cy.get('#ctt-fone')
+  .next('.message')
+  .should('be.visible')
+  .and('contain', 'Informe o seu telefone.')
+
+
+  })
+
+})
 
 })

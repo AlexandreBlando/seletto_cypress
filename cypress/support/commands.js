@@ -29,3 +29,36 @@ Cypress.Commands.add('start', ()=>{
     cy.visit('http://localhost:8080/seletto/')
 
 })
+
+/*
+
+Cypress.Commands.add('preencherContato', (dados = {}) => {
+  const { nome, email, telefone } = dados;
+
+  if (nome) cy.get('#ctt-name').type(nome);
+  if (email) cy.get('#ctt-mail').type(email);
+  if (telefone) cy.get('#ctt-fone').type(telefone);
+
+  cy.contains('button', 'Enviar').click();
+});
+
+
+Todos os Campos:
+
+cy.preencherContato({
+  nome: 'João Silva',
+  email: 'joao@teste.com',
+  telefone: '71999998888'
+});
+    
+
+Todos os campos
+cy.preencherContato();
+
+Somente telefone
+cy.preencherContato({
+  telefone: '71911112222'
+});
+
+*/
+
