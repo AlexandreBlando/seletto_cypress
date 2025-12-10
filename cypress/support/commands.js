@@ -33,7 +33,8 @@ Cypress.Commands.add('start', ()=>{
 
 Cypress.Commands.add('navegation', (section)=>{
     //Click na sessão que deseja
-    //cy.contains('a', section).click()
+    //cy.contains('a', section).click() Precisei ajustar para primeira letra maiuscula 
+    
     cy.contains('a', section.charAt(0).toUpperCase() + section.slice(1)).click()
       // Valida se a seção destino ficou visível
     cy.get(`#${section}`)
